@@ -22,6 +22,15 @@
 .box:hover {
   background-color: blue;
 }
+
+.active {
+  background-color: gray;
+}
+
+.active:hover {
+  background-color: gray;
+}
+
 .right {
   border-right-style: none;
 }
