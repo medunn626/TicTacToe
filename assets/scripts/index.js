@@ -14,7 +14,7 @@ $(() => {
 // require('./example')
 
 // TO-DO:
-// Support playing multiple games, one at a time.
+// Start Auth
 // Make files modular
 // Access API
 
