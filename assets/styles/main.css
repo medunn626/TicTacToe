@@ -11,6 +11,22 @@ p {
   vertical-align: middle;
 }
 
+.log-in-forms {
+  clear: right;
+}
+
+.success {
+  color: darkgreen;
+}
+
+.failure {
+  color: red;
+}
+
+.sign-up {
+  clear: both;
+}
+
 .game-board {
   clear: right;
 }
@@ -54,7 +70,7 @@ p {
 }
 
 .message {
-  clear: both;
+  /*clear: both;*/
   text-align: center;
   vertical-align: middle;
 }

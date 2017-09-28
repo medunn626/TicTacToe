@@ -15,9 +15,52 @@
       <div class="logo">
       <h1>Tic Tac Toe</h1>
     </div>
+
     <div class ="log-in-area">
       <h4>Sign In!</h4>
+    </div class="log-in-forms" id="log-in-forms">
+    <div class=col-xs-12>
+      <h5 class="success"></h5>
+      <h5 class="failure"></h5>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <form class="sign-up" id="sign-up">
+      <fieldset>
+        <legend>Sign Up!</legend>
+        <input type="text" name="credentials[email]" placeholder="Enter Email">
+        <input type="password" name="credentials[password]" placeholder="Create Password">
+        <input type="password" name="credentials[password-confirmation]" placeholder="Confirm Password">
+        <input type="submit" name="submit" value="Sign up!">
+      </fieldset>
+    </form>
+    <br>
+    <form id="sign-in">
+      <fieldset>
+        <legend>Sign In!</legend>
+        <input type="text" name="credentials[email]" placeholder="Enter Email">
+        <input type="password" name="credentials[password]" placeholder="Enter Password">
+        <input type="submit" name="submit" value="Sign in!">
+      </fieldset>
+    </form>
+    <br>
+    <form id="change-password">
+      <fieldset>
+        <legend>Change Password</legend>
+        <input type="password" name="passwords[old]" placeholder="Old Password">
+        <input type="password" name="passwords[new]" placeholder="New Password">
+        <input type="submit" name="submit" value="Change Password">
+      </fieldset>
+    </form>
+    <br>
+    <form id="sign-out">
+      <fieldset>
+        <legend>Sign Out</legend>
+        <input type="submit" name="submit" value="Sign Out">
+      </fieldset>
+    </form>
     <div class="game-board" id=game-board>
       <br>
       <br>
