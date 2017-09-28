@@ -6,6 +6,11 @@
   float: right;
 }
 
+p {
+  text-align: center;
+  vertical-align: middle;
+}
+
 .game-board {
   clear: right;
 }
@@ -14,9 +19,9 @@
   border-bottom-style: solid;
   border-right-style: solid;
   font-size: 20px;
-  height: 50px;
-  padding: 5px;
+  height: 75px;
   text-align: center;
+  width: 45px;
 }
 
 .box:hover {
@@ -24,11 +29,12 @@
 }
 
 .active {
-  background-color: gray;
+  background-color: lightgray;
+  pointer-events: none;
 }
 
 .active:hover {
-  background-color: gray;
+  background-color: lightgray;
 }
 
 .right {
@@ -47,8 +53,10 @@
   float: right;
 }
 
-.new-game {
-  clear: right;
+.message {
+  clear: both;
+  text-align: center;
+  vertical-align: middle;
 }
 
 .new-game-button {
