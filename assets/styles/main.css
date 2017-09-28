@@ -96,6 +96,11 @@ h5 {
   color: white;
 }
 
+.get-games-button {
+  background-color: blue;
+  color: white;
+}
+
 .trigger-modal-button {
   background-color: blue;
   color: white;
