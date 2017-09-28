@@ -1,6 +1,6 @@
 'use strict'
 
-const store = require('../store')
+const store = require('./store')
 const modal = document.getElementById('modal')
 
 const signUpSuccess = function (data) {
@@ -40,7 +40,6 @@ const changePasswordSuccess = function () {
 const changePasswordFailure = function (error) {
   console.error(error)
   $('.modal-failure').text('Sorry, please try again.')
-  $('.modal-success').text('')
 }
 
 const signOutSuccess = function () {

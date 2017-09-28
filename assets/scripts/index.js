@@ -2,7 +2,7 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
-const events = require('./auth/events')
+const events = require('./events')
 
 $(() => {
   setAPIOrigin(location, config)
@@ -25,6 +25,7 @@ const openModal = function () {
 
 const closeModal = function () {
   modal.style.display = 'none'
+  $('.modal-failure').text('')
 }
 
 const value = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
