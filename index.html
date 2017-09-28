@@ -13,96 +13,106 @@
     </head>
     <body class="container-fluid">
       <div class="logo">
-      <h1>Tic Tac Toe</h1>
-    </div>
-
-    <div class ="log-in-area">
-      <h4>Sign In!</h4>
-    </div class="log-in-forms" id="log-in-forms">
-    <div class=col-xs-12>
-      <h5 class="success"></h5>
-      <h5 class="failure"></h5>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <form class="sign-up" id="sign-up">
-      <fieldset>
-        <legend>Sign Up!</legend>
-        <input type="text" name="credentials[email]" placeholder="Enter Email">
-        <input type="password" name="credentials[password]" placeholder="Create Password">
-        <input type="password" name="credentials[password-confirmation]" placeholder="Confirm Password">
-        <input type="submit" name="submit" value="Sign up!">
-      </fieldset>
-    </form>
-    <br>
-    <form id="sign-in">
-      <fieldset>
-        <legend>Sign In!</legend>
-        <input type="text" name="credentials[email]" placeholder="Enter Email">
-        <input type="password" name="credentials[password]" placeholder="Enter Password">
-        <input type="submit" name="submit" value="Sign in!">
-      </fieldset>
-    </form>
-    <br>
-    <form id="change-password">
-      <fieldset>
-        <legend>Change Password</legend>
-        <input type="password" name="passwords[old]" placeholder="Old Password">
-        <input type="password" name="passwords[new]" placeholder="New Password">
-        <input type="submit" name="submit" value="Change Password">
-      </fieldset>
-    </form>
-    <br>
-    <form id="sign-out">
-      <fieldset>
-        <legend>Sign Out</legend>
-        <input type="submit" name="submit" value="Sign Out">
-      </fieldset>
-    </form>
-    <div class="game-board" id=game-board>
-      <br>
-      <br>
-      <p>Play this awesome Tic Tac Toe game!</p>
-      <br>
-      <br>
-      <div class="new-row">
-        <div class="col-xs-4 box" id="0"></div>
-        <div class="col-xs-4 box" id="1"></div>
-        <div class="col-xs-4 box right" id="2"></div>
+        <h1>Tic Tac Toe</h1>
+        <h5>The game that will change your life!</h5>
       </div>
-      <div class="new-row">
-        <div class="col-xs-4 box" id="3"></div>
-        <div class="col-xs-4 box" id="4"></div>
-        <div class="col-xs-4 box right" id="5"></div>
-      </div>
-      <div class="new-row">
-        <div class="col-xs-4 box bottom" id="6"></div>
-        <div class="col-xs-4 box bottom" id="7"></div>
-        <div class="col-xs-4 box bottom right" id="8"></div>
-      </div>
-    </div>
-    <div class="players">
-      <div class="user">
+      <div class="log-in-forms" id="log-in-forms">
+        <div class=col-xs-12>
+          <h5 class="success"></h5>
+          <h5 class="failure"></h5>
+        </div>
         <br>
-        <br>
-        <h4>Your Score:</h4>
-        <h3 id="x-score">0</h3>
+        <div class="sign-in">
+        <form class="sign-in" id="sign-in">
+          <fieldset>
+            <legend>Sign In!</legend>
+            <input type="text" name="credentials[email]" placeholder="Enter Email"><br>
+            <input type="password" name="credentials[password]" placeholder="Enter Password"><br>
+            <input type="submit" name="submit" value="Sign in!">
+          </fieldset>
+        </form>
       </div>
-      <div class="opponent">
+      <div class="sign-up">
         <br>
-        <br>
-        <h4>Opponent's Score:</h4>
-        <h3 id="o-score">0</h3>
+        <a href="#sign-up" data-toggle="collapse">Not a member? Create an Account!</a>
+        <form class="collapse" id="sign-up">
+          <fieldset>
+            <input type="text" name="credentials[email]" placeholder="Enter Email"><br>
+            <input type="password" name="credentials[password]" placeholder="Create Password"><br>
+            <input type="password" name="credentials[password-confirmation]" placeholder="Confirm Password"><br>
+            <input type="submit" name="submit" value="Sign up!">
+          </fieldset>
+        </form>
       </div>
-      <div class="col-xs-12 message">
-        <h2 id="message"></h2>
       </div>
-      </div>
-      <div class="col-xs-12 new-game">
-        <br>
-        <button type="submit" class="new-game-button">New Game</button>
+      <div class="main-area hidden-content">
+        <div class="game-board" id=game-board>
+          <br>
+          <br>
+          <h5 class="heading">Let's Play!</h5>
+          <br>
+          <br>
+          <div class="new-row">
+            <div class="col-xs-4 box" id="0"></div>
+            <div class="col-xs-4 box" id="1"></div>
+            <div class="col-xs-4 box right" id="2"></div>
+          </div>
+          <div class="new-row">
+            <div class="col-xs-4 box" id="3"></div>
+            <div class="col-xs-4 box" id="4"></div>
+            <div class="col-xs-4 box right" id="5"></div>
+          </div>
+          <div class="new-row">
+            <div class="col-xs-4 box bottom" id="6"></div>
+            <div class="col-xs-4 box bottom" id="7"></div>
+            <div class="col-xs-4 box bottom right" id="8"></div>
+          </div>
+        </div>
+        <div class="players">
+          <div class="user">
+            <br>
+            <br>
+            <h4>Your Score:</h4>
+            <h3 class="score-display" id="x-score">0</h3>
+          </div>
+          <div class="opponent">
+            <br>
+            <br>
+            <h4>Opponent's Score:</h4>
+            <h3 class="score-display" id="o-score">0</h3>
+          </div>
+          <div class="col-xs-12 message">
+            <h2 id="message"></h2>
+          </div>
+        </div>
+        <div class="col-xs-4 new-game">
+          <br>
+          <button type="submit" class="new-game-button">New Game</button>
+        </div>
+        <div class="col-xs-4 change-pswd">
+          <br>
+          <button type="submit" class="trigger-modal-button" id="trigger-modal-button">Account Info</button>
+          <div id="modal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="close">&times;</span>
+              <form id="change-password">
+                <fieldset>
+                  <legend>Would you like to change your password?</legend>
+                  <h5 class="modal-failure"></h5>
+                  <input type="password" name="passwords[old]" placeholder="Old Password">
+                  <input type="password" name="passwords[new]" placeholder="New Password">
+                  <input type="submit" name="submit" value="Change Password">
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4 sign-out">
+          <form id="sign-out">
+            <br>
+            <input type="submit" name="submit" class="sign-out-button" value="Sign Out">
+          </form>
+       </div>
     </div>
   </body>
 </html>

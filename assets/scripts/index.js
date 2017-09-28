@@ -10,12 +10,22 @@ $(() => {
 
 // TO-DO:
 // Game API functions
-
-// ENHANCEMENTS:
-// Only show game content when signed in
-// Data validation on sign-in fields
 // Make all files modular
+// How to prevent refresh button from logging user out and making them sign in again
 // Styling
+// Make it look better in desktop (col length)
+// Footer content
+
+const modal = document.getElementById('modal')
+
+const openModal = function () {
+  modal.style.display = 'block'
+  $('.success').text('')
+}
+
+const closeModal = function () {
+  modal.style.display = 'none'
+}
 
 const value = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
 let cells = []
@@ -145,6 +155,7 @@ const resetStyle = function () {
 
 const move = function () {
   if (turnsTaken < 9) {
+    $('.success').text('')
     cells[this.id] = value[turn]
     $(this).text(value[turn])
     $(this).addClass('active')
@@ -162,6 +173,7 @@ const move = function () {
 }
 
 const newGame = function () {
+  $('.success').text('')
   $('.box').text('')
   resetStyle()
   resetGame()
@@ -177,6 +189,14 @@ $(() => {
 
 $(() => {
   $('.new-game-button').on('click', newGame)
+})
+
+$(() => {
+  $('.trigger-modal-button').on('click', openModal)
+})
+
+$(() => {
+  $('.close').on('click', closeModal)
 })
 
 $(() => {
