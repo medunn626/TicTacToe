@@ -2,21 +2,20 @@
 
 const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
+const events = require('./auth/events')
 
 $(() => {
   setAPIOrigin(location, config)
 })
 
-// use require with a reference to bundle the file and use it in this file
-// const example = require('./example')
-
-// use require without a reference to ensure a file is bundled
-// require('./example')
-
 // TO-DO:
-// Start Auth
-// Make files modular
-// Access API
+// Game API functions
+
+// ENHANCEMENTS:
+// Only show game content when signed in
+// Data validation on sign-in fields
+// Make all files modular
+// Styling
 
 const value = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
 let cells = []
@@ -178,4 +177,8 @@ $(() => {
 
 $(() => {
   $('.new-game-button').on('click', newGame)
+})
+
+$(() => {
+  events.addHandlers()
 })
