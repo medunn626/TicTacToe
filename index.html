@@ -18,7 +18,7 @@
     <div class ="log-in-area">
       <h4>Sign In!</h4>
     </div>
-    <div class="game-board">
+    <div class="game-board" id=game-board>
       <br>
       <br>
       <p>Play this awesome Tic Tac Toe game!</p>
@@ -44,18 +44,22 @@
       <div class="user">
         <br>
         <br>
-        <h5>Your Score</h5>
+        <h4>Your Score:</h4>
+        <h3 id="x-score">0</h3>
       </div>
       <div class="opponent">
         <br>
         <br>
-        <h5>Opponent's Score</h5>
+        <h4>Opponent's Score:</h4>
+        <h3 id="o-score">0</h3>
       </div>
-    </div>
-    <div class="col-xs-12 new-game">
-      <br>
-      <br>
-      <button type="submit" class="new-game-button">New Game</button>
+      <div class="col-xs-12 message">
+        <h2 id="message"></h2>
+      </div>
+      </div>
+      <div class="col-xs-12 new-game">
+        <br>
+        <button type="submit" class="new-game-button">New Game</button>
     </div>
   </body>
 </html>

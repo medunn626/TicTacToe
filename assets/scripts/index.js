@@ -14,49 +14,113 @@ $(() => {
 // require('./example')
 
 // TO-DO:
-// Prevent div from becoming clickable when there is a value
-// Prevent all divs from being clickable after turns is 9
-// Prevent all divs from being clickable after a game is won
-// When a match is made, strikethrough values and add to player scores
-// Edit cells to not be copy of value, it needs to be specific for scoring to work
+// Support playing multiple games, one at a time.
 // Make files modular
 // Access API
 
 const value = ['X', 'O', 'X', 'O', 'X', 'O', 'X', 'O', 'X']
-const cells = []
-let score = 0
-let i = 0
+let cells = []
+let xScore = 0
+let oScore = 0
+let turn = 0
 let turnsTaken = 0
 let turnsLeft = 9
 
 const keepScore = function () {
-  if (
-    (cells[0] === cells[1] === cells[2]) ||
-    (cells[3] === cells[4] === cells[5]) ||
-    (cells[6] === cells[7] === cells[8]) ||
-    (cells[0] === cells[3] === cells[6]) ||
-    (cells[1] === cells[4] === cells[7]) ||
-    (cells[2] === cells[5] === cells[8]) ||
-    (cells[0] === cells[4] === cells[8]) ||
-    (cells[2] === cells[4] === cells[6])) {
-    score++
+  if (xScore < 1 && oScore < 1) {
+    if (cells[0] === 'X' && cells[1] === 'X' && cells[2] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[3] === 'X' && cells[4] === 'X' && cells[5] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[6] === 'X' && cells[7] === 'X' && cells[8] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[0] === 'X' && cells[3] === 'X' && cells[6] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[1] === 'X' && cells[4] === 'X' && cells[7] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[2] === 'X' && cells[5] === 'X' && cells[8] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[0] === 'X' && cells[4] === 'X' && cells[8] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[2] === 'X' && cells[4] === 'X' && cells[6] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[0] === 'X' && cells[1] === 'X' && cells[2] === 'X') {
+      xScore++
+      $('#message').text('Yay, you won!')
+      $('#x-score').text(xScore)
+    } else if (cells[0] === 'O' && cells[1] === 'O' && cells[2] === 'O') {
+      oScore++
+      $('#message').text('You lost. Don\'t worry. Well, maybe a little.')
+      $('#o-score').text(oScore)
+    } else if (cells[3] === 'O' && cells[4] === 'O' && cells[5] === 'O') {
+      oScore++
+      $('#message').text('Woops, you got squashed like a bug!')
+      $('#o-score').text(oScore)
+    } else if (cells[6] === 'O' && cells[7] === 'O' && cells[8] === 'O') {
+      oScore++
+      $('#message').text('You had one job!')
+      $('#o-score').text(oScore)
+    } else if (cells[0] === 'O' && cells[3] === 'O' && cells[6] === 'O') {
+      oScore++
+      $('#message').text('Excellent...for your opponent that is.')
+      $('#o-score').text(oScore)
+    } else if (cells[1] === 'O' && cells[4] === 'O' && cells[7] === 'O') {
+      oScore++
+      $('#message').text('I guess you can try again.')
+      $('#o-score').text(oScore)
+    } else if (cells[2] === 'O' && cells[5] === 'O' && cells[8] === 'O') {
+      oScore++
+      $('#message').text('Are you sure you\'re good at this game?')
+      $('#o-score').text(oScore)
+    } else if (cells[0] === 'O' && cells[4] === 'O' && cells[8] === 'O') {
+      oScore++
+      $('#message').text('It\'s a sad day indeed.')
+      $('#o-score').text(oScore)
+    } else if (cells[2] === 'O' && cells[4] === 'O' && cells[6] === 'O') {
+      oScore++
+      $('#message').text('Hope you weren\'t betting any money on this!')
+      $('#o-score').text(oScore)
+    } else if (turnsTaken === 9 && xScore === 0 && oScore === 0) {
+      $('#message').text('And no one wins! Feel free to try again.')
+    }
   }
-  return score
 }
 
 const incrementTurns = function () {
   turnsTaken = turnsTaken + 1
   turnsLeft = turnsLeft - 1
-  i = i + 1
+  turn = turn + 1
 }
 
-const resetTurns = function () {
-  i = 0
+const resetGame = function () {
+  cells = []
+  turn = 0
   turnsTaken = 0
   turnsLeft = 9
+  xScore = 0
+  oScore = 0
+  $('#message').text('')
+  $('#o-score').text(xScore)
+  $('#x-score').text(xScore)
 }
 
-const getResetStyle = [
+const getCellId = [
   document.getElementById('0'),
   document.getElementById('1'),
   document.getElementById('2'),
@@ -68,34 +132,43 @@ const getResetStyle = [
   document.getElementById('8')
 ]
 
-const doResetStyle = function () {
-  getResetStyle[0].className = 'col-xs-4 box'
-  getResetStyle[1].className = 'col-xs-4 box'
-  getResetStyle[2].className = 'col-xs-4 box right'
-  getResetStyle[3].className = 'col-xs-4 box'
-  getResetStyle[4].className = 'col-xs-4 box'
-  getResetStyle[5].className = 'col-xs-4 box right'
-  getResetStyle[6].className = 'col-xs-4 box bottom'
-  getResetStyle[7].className = 'col-xs-4 box bottom'
-  getResetStyle[8].className = 'col-xs-4 box bottom right'
+const resetStyle = function () {
+  getCellId[0].className = 'col-xs-4 box'
+  getCellId[1].className = 'col-xs-4 box'
+  getCellId[2].className = 'col-xs-4 box right'
+  getCellId[3].className = 'col-xs-4 box'
+  getCellId[4].className = 'col-xs-4 box'
+  getCellId[5].className = 'col-xs-4 box right'
+  getCellId[6].className = 'col-xs-4 box bottom'
+  getCellId[7].className = 'col-xs-4 box bottom'
+  getCellId[8].className = 'col-xs-4 box bottom right'
 }
 
 const move = function () {
-  cells[i] = value[i]
-  $(this).text(value[i])
-  this.className += ' active'
-  incrementTurns()
-  keepScore()
-  console.log('Cells array is: ' + cells + ', Turns taken: ' + turnsTaken + ', Turns Left: ' + turnsLeft)
-  console.log('Score: ' + score)
+  if (turnsTaken < 9) {
+    cells[this.id] = value[turn]
+    $(this).text(value[turn])
+    $(this).addClass('active')
+    incrementTurns()
+    keepScore()
+    if (xScore > 0 || oScore > 0) {
+      $('div.box').addClass('active')
+    }
+    console.log('Grid Position: ' + this.id)
+    console.log('cells array is: ' + cells + ', Turns taken: ' + turnsTaken + ', Turns Left: ' + turnsLeft)
+    console.log('X score is: ' + xScore)
+    console.log('O score is: ' + oScore)
+  }
   return cells
 }
 
 const newGame = function () {
   $('.box').text('')
-  doResetStyle()
-  resetTurns()
-  console.log('Cells array is: ' + cells + ', Turns taken: ' + turnsTaken + ', Turns Left: ' + turnsLeft)
+  resetStyle()
+  resetGame()
+  console.log('cells array is: ' + cells + ', Turns taken: ' + turnsTaken + ', Turns Left: ' + turnsLeft)
+  console.log('X score is: ' + xScore)
+  console.log('O score is: ' + oScore)
   return cells
 }
 
