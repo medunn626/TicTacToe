@@ -40,9 +40,55 @@ const signOut = function () {
   })
 }
 
+const create = function (newGameData) {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'POST',
+    data: newGameData,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const update = function (updateGameData) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + updateGameData.games.id,
+    method: 'PATCH',
+    data: updateGameData,
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const index = function () {
+  return $.ajax({
+    url: config.apiOrigin + '/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
+const show = function (input) {
+  return $.ajax({
+    url: config.apiOrigin + '/games?over=true',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
   changePassword,
-  signOut
+  signOut,
+  create,
+  update,
+  index,
+  show
 }
