@@ -11,13 +11,11 @@ $(() => {
 // TO-DO:
 // New game on sign up
 // Update
-// Watch
 // How to prevent refresh button from logging user out and making them sign in again
-// Test
+// Test all paths (create new log in and see if games!==0 is needed in api events)
 // Make all files modular
 // Styling
 // Make it look better in desktop (col length)
-// Footer content
 
 // Change password modal variables and functions:
 const modal = document.getElementById('modal')
@@ -272,3 +270,12 @@ $(() => {
 $(() => {
   events.addHandlers()
 })
+
+module.exports = {
+  over,
+  cells,
+  xWins,
+  xScore,
+  oWins,
+  oScore
+}

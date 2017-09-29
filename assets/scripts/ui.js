@@ -63,9 +63,10 @@ const signOutFailure = function (error) {
 
 const onCreateSuccess = function (data) {
   console.log(data)
+  store.game = data.game.id
   $('div.display-game-id').removeClass('hidden-content')
   $('.display').text('')
-  $('.display').text('Game ID: ' + data.game.id)
+  $('.display').text('Game ID: ' + store.game)
   $('.success').text('New game started. It\'s your turn player X')
   $('.failure').text('')
 }
@@ -75,15 +76,15 @@ const onError = function () {
   $('.success').text('')
 }
 
+const onUpdateSuccess = function () {
+  $('.success').append('Go!')
+  $('.failure').text('')
+}
+
 const onErrorModal = function () {
   $('.game-modal-failure').text('There was an issue with your request.')
   $('#see-game').text('')
 }
-
-// const onUpdateSuccess = function () {
-//   $('.success').text('Your turn player' + index.currentPlayer)
-//   $('.failure').text('')
-// }
 
 const onGetGamesSuccess = function (data) {
   console.log(data.games)
@@ -108,8 +109,8 @@ module.exports = {
   signOutFailure,
   onCreateSuccess,
   onError,
+  onUpdateSuccess,
   onErrorModal,
-  // onUpdateSuccess,
   onGetGamesSuccess,
   onGetGameSuccess
 }
