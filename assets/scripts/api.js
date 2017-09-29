@@ -40,27 +40,26 @@ const signOut = function () {
   })
 }
 
-const create = function (newGameData) {
+const create = function () {
   return $.ajax({
     url: config.apiOrigin + '/games',
     method: 'POST',
-    data: newGameData,
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
   })
 }
 
-const update = function (updateGameData) {
-  return $.ajax({
-    url: config.apiOrigin + '/games/' + updateGameData.games.id,
-    method: 'PATCH',
-    data: updateGameData,
-    headers: {
-      Authorization: 'Token token=' + store.user.token
-    }
-  })
-}
+// const update = function (data) {
+//   return $.ajax({
+//     url: config.apiOrigin + '/games/' + store.user.id,
+//     method: 'PATCH',
+//     data: data,
+//     headers: {
+//       Authorization: 'Token token=' + store.user.token
+//     }
+//   })
+// }
 
 const index = function () {
   return $.ajax({
@@ -72,9 +71,9 @@ const index = function () {
   })
 }
 
-const show = function (input) {
+const show = function (id) {
   return $.ajax({
-    url: config.apiOrigin + '/games?over=true',
+    url: config.apiOrigin + '/games/' + id,
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -88,7 +87,7 @@ module.exports = {
   changePassword,
   signOut,
   create,
-  update,
+  // update,
   index,
   show
 }

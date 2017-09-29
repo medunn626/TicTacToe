@@ -16,6 +16,9 @@
         <h1>Tic Tac Toe</h1>
         <h5>The game that will change your life!</h5>
       </div>
+      <div class="display-game-id hidden-content" id="display-game-id">
+        <h5 class="display">Game ID: </h5>
+      </div>
       <div class="log-in-forms" id="log-in-forms">
         <div class=col-xs-12>
           <h5 class="success"></h5>
@@ -87,6 +90,22 @@
         <div class="col-xs-3 stats">
           <br>
           <button type="submit" class="get-games-button" id="get-games">Statistics</button>
+          <div id="stats-modal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="stats-close">&times;</span>
+              <form id="get-game">
+                <fieldset>
+                  <legend>Search by Game ID:</legend>
+                  <h5 class="game-modal-failure"></h5>
+                  <input type="text" name="game[id]" placeholder="Enter Game ID">
+                  <input type="submit" name="submit" value="Find Game">
+                  <h5 class="see-game" id="see-game"></h5>
+                  <a href="#see-games" data-toggle="collapse">See All Your Games:</a>
+                  <h5 class="see-games collapse" id="see-games"></h5>
+                </fieldset>
+              </form>
+            </div>
+          </div>
         </div>
         <div class="col-xs-3 change-pswd">
           <br>

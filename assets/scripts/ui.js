@@ -22,6 +22,7 @@ const signInSuccess = function (data) {
   $('.failure').text('')
   store.user = data.user
   $('div.main-area').removeClass('hidden-content')
+  $('div.display-game-id').removeClass('hidden-content')
   $('div.sign-up').addClass('hidden-content')
   $('div.sign-in').addClass('hidden-content')
 }
@@ -49,6 +50,7 @@ const signOutSuccess = function () {
   store.user = null
   console.log(store.user)
   $('div.main-area').addClass('hidden-content')
+  $('div.display-game-id').addClass('hidden-content')
   $('div.sign-up').removeClass('hidden-content')
   $('div.sign-in').removeClass('hidden-content')
 }
@@ -59,8 +61,12 @@ const signOutFailure = function (error) {
   $('.success').text('')
 }
 
-const onCreateSuccess = function () {
-  $('.success').text('New game started.')
+const onCreateSuccess = function (data) {
+  console.log(data)
+  $('div.display-game-id').removeClass('hidden-content')
+  $('.display').text('')
+  $('.display').text('Game ID: ' + data.game.id)
+  $('.success').text('New game started. It\'s your turn player X')
   $('.failure').text('')
 }
 
@@ -69,21 +75,26 @@ const onError = function () {
   $('.success').text('')
 }
 
+const onErrorModal = function () {
+  $('.game-modal-failure').text('There was an issue with your request.')
+  $('#see-game').text('')
+}
+
 // const onUpdateSuccess = function () {
 //   $('.success').text('Your turn player' + index.currentPlayer)
 //   $('.failure').text('')
 // }
 
 const onGetGamesSuccess = function (data) {
-  if (data.games) {
-    console.table(data.games)
-    $('.failure').text('')
-    data.games.forEach((game) => $('.success').append(`${game.id}: ${game.cells}, ${game.over}, ${game.player_x}, ${game.player_o}<br>`))
-  } else {
-    console.log('data is ', data)
-    $('.failure').text('')
-    data.games.forEach((game) => $('.success').append(`${game.id}: ${game.cells}<br>`))
-  }
+  console.log(data.games)
+  $('#see-games').text('')
+  data.games.forEach((game) => $('#see-games').append(`Game # ${game.id}: Match between ${game.player_x} and ${game.player_o}<br>`))
+}
+
+const onGetGameSuccess = function (data) {
+  console.log('data is ', data)
+  $('.game-modal-failure').text('')
+  $('#see-game').append(`Game # ${data.game.id}: Match between ${data.game.player_x} and ${data.game.player_o}`)
 }
 
 module.exports = {
@@ -97,6 +108,8 @@ module.exports = {
   signOutFailure,
   onCreateSuccess,
   onError,
+  onErrorModal,
   // onUpdateSuccess,
-  onGetGamesSuccess
+  onGetGamesSuccess,
+  onGetGameSuccess
 }

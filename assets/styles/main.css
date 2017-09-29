@@ -2,6 +2,10 @@
   float: left;
 }
 
+.display-game-id {
+  float: right;
+}
+
 a {
   font-size: 15px;
 }
@@ -31,16 +35,24 @@ h5 {
   clear: left;
 }
 
+.see-games {
+  color: darkgreen;
+}
+
+.see-game {
+  color: darkgreen
+}
+
 .modal-failure {
+  color: red;
+}
+
+.game-modal-failure {
   color: red;
 }
 
 .hidden-content {
   display: none;
-}
-
-.pswd-change-log-out {
-  clear: left;
 }
 
 .box {
