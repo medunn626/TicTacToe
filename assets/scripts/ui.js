@@ -1,6 +1,7 @@
 'use strict'
 
 const store = require('./store')
+
 const modal = document.getElementById('modal')
 
 const signUpSuccess = function (data) {
@@ -17,7 +18,7 @@ const signUpFailure = function (error) {
 
 const signInSuccess = function (data) {
   console.log(data)
-  $('.success').text('You are now signed in!')
+  $('.success').text('You are now signed in. It\'s your turn player X')
   $('.failure').text('')
   store.user = data.user
   $('div.main-area').removeClass('hidden-content')
@@ -58,6 +59,33 @@ const signOutFailure = function (error) {
   $('.success').text('')
 }
 
+const onCreateSuccess = function () {
+  $('.success').text('New game started.')
+  $('.failure').text('')
+}
+
+const onError = function () {
+  $('.failure').text('There was an issue with your request.')
+  $('.success').text('')
+}
+
+// const onUpdateSuccess = function () {
+//   $('.success').text('Your turn player' + index.currentPlayer)
+//   $('.failure').text('')
+// }
+
+const onGetGamesSuccess = function (data) {
+  if (data.games) {
+    console.table(data.games)
+    $('.failure').text('')
+    data.games.forEach((game) => $('.success').append(`${game.id}: ${game.cells}, ${game.over}, ${game.player_x}, ${game.player_o}<br>`))
+  } else {
+    console.log('data is ', data)
+    $('.failure').text('')
+    data.games.forEach((game) => $('.success').append(`${game.id}: ${game.cells}<br>`))
+  }
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
@@ -66,5 +94,9 @@ module.exports = {
   changePasswordSuccess,
   changePasswordFailure,
   signOutSuccess,
-  signOutFailure
+  signOutFailure,
+  onCreateSuccess,
+  onError,
+  // onUpdateSuccess,
+  onGetGamesSuccess
 }

@@ -85,10 +85,8 @@ h5 {
   text-align: center;
 }
 
-.message {
-  /*clear: both;*/
-  text-align: center;
-  vertical-align: middle;
+.new-game{
+  clear: both;
 }
 
 .new-game-button {

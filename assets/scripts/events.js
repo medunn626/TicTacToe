@@ -46,8 +46,8 @@ const onCreateGame = function (event) {
 const onUpdateGame = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  const game = data.game
-  if (game.id.length !== 0) {
+  const games = data.games
+  if (games.id.length !== 0) {
     api.update(data)
       .then(ui.onUpdateSuccess)
       .catch(ui.onError)
@@ -57,17 +57,17 @@ const onUpdateGame = function (event) {
 const onGetGames = function (event) {
   event.preventDefault()
   api.index()
-    .then(ui.onSuccess)
+    .then(ui.onGetGamesSuccess)
     .catch(ui.onError)
 }
 
 const onGetGame = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  const game = data.game
-  if (game.id.length !== 0) {
-    api.show(game.id)
-      .then(ui.onSuccess)
+  const games = data.games
+  if (games.id.length !== 0) {
+    api.show(games.id)
+      .then(ui.onGetGamesSuccess)
       .catch(ui.onError)
   }
 }
@@ -78,7 +78,7 @@ const addHandlers = function () {
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
   $('#new-game').on('submit', onCreateGame)
-  $('#game-board').on('submit', onUpdateGame)
+  $('.box').on('click', onUpdateGame)
   $('#get-games').on('submit', onGetGames)
   $('#get-games').on('submit', onGetGame)
 }
