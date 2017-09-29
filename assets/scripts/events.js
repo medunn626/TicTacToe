@@ -37,39 +37,36 @@ const onSignOut = function (event) {
 
 const onCreateGame = function (event) {
   event.preventDefault()
-  const data = getFormFields(event.target)
-  api.create(data)
+  api.create()
     .then(ui.onCreateSuccess)
     .catch(ui.onError)
 }
 
-const onUpdateGame = function (event) {
-  event.preventDefault()
-  const data = getFormFields(event.target)
-  const games = data.games
-  if (games.id.length !== 0) {
-    api.update(data)
-      .then(ui.onUpdateSuccess)
-      .catch(ui.onError)
-  }
-}
+// const onUpdateGame = function (event) {
+//   event.preventDefault()
+//   const data = getFormFields(event.target)
+//   const games = data.games
+//   if (games.id.length !== 0) {
+//     api.update(data)
+//       .then(ui.onUpdateSuccess)
+//       .catch(ui.onError)
+//   }
+// }
 
-const onGetGames = function (event) {
+const onGetGames = function () {
   event.preventDefault()
   api.index()
     .then(ui.onGetGamesSuccess)
-    .catch(ui.onError)
+    .catch(ui.onErrorModal)
 }
 
 const onGetGame = function (event) {
   event.preventDefault()
   const data = getFormFields(event.target)
-  const games = data.games
-  if (games.id.length !== 0) {
-    api.show(games.id)
-      .then(ui.onGetGamesSuccess)
-      .catch(ui.onError)
-  }
+  const game = data.game
+  api.show(game.id)
+    .then(ui.onGetGameSuccess)
+    .catch(ui.onErrorModal)
 }
 
 const addHandlers = function () {
@@ -77,10 +74,10 @@ const addHandlers = function () {
   $('#sign-in').on('submit', onSignIn)
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
-  $('#new-game').on('submit', onCreateGame)
-  $('.box').on('click', onUpdateGame)
-  $('#get-games').on('submit', onGetGames)
-  $('#get-games').on('submit', onGetGame)
+  $('.new-game-button').on('click', onCreateGame)
+  // $('.box').on('click', onUpdateGame)
+  $('#get-games').on('click', onGetGames)
+  $('#get-game').on('submit', onGetGame)
 }
 
 module.exports = {
