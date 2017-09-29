@@ -2,6 +2,7 @@
 
 const config = require('./config')
 const store = require('./store')
+const main = require('./index')
 
 const signUp = function (data) {
   return $.ajax({
@@ -41,6 +42,7 @@ const signOut = function () {
 }
 
 const create = function () {
+  console.log('store is' + store)
   return $.ajax({
     url: config.apiOrigin + '/games',
     method: 'POST',
@@ -50,16 +52,29 @@ const create = function () {
   })
 }
 
-// const update = function (data) {
-//   return $.ajax({
-//     url: config.apiOrigin + '/games/' + store.user.id,
-//     method: 'PATCH',
-//     data: data,
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token
-//     }
-//   })
-// }
+const update = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/games/' + store.game,
+    method: 'PATCH',
+    data: {
+      over: main.over,
+      cells: main.cells,
+      player_x: {
+        email: store.user.email,
+        id: store.user.id,
+        winner: main.xWins,
+        score: main.xScore
+      },
+      player_0: {
+        winner: main.oWins,
+        score: main.oScore
+      }
+    },
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
 
 const index = function () {
   return $.ajax({
@@ -87,7 +102,7 @@ module.exports = {
   changePassword,
   signOut,
   create,
-  // update,
+  update,
   index,
   show
 }
