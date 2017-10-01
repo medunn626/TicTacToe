@@ -35,8 +35,14 @@ h5 {
   clear: left;
 }
 
-.see-games {
+.previous {
   color: darkgreen;
+  text-align: left;
+}
+
+.complete {
+  color: darkgreen;
+  text-align: left;
 }
 
 .see-game {

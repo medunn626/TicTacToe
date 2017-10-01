@@ -3,6 +3,7 @@
 const getFormFields = require(`../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
+// const store = ('./store')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
@@ -15,10 +16,10 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  api.create()
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
+    .then(onCreateGameSignIn)
 }
 
 const onChangePassword = function (event) {
@@ -36,6 +37,12 @@ const onSignOut = function (event) {
     .catch(ui.signOutFailure)
 }
 
+const onCreateGameSignIn = function () {
+  api.create()
+    .then(ui.onCreateSuccessSignIn)
+    .catch(ui.signInFailure)
+}
+
 const onCreateGame = function (event) {
   event.preventDefault()
   api.create()
@@ -44,8 +51,9 @@ const onCreateGame = function (event) {
 }
 
 const onUpdateGame = function (event) {
+  console.log(event.target.id)
   event.preventDefault()
-  const data = getFormFields(event.target)
+  const data = event.target
   const game = data.game
   api.update(game)
     .then(ui.onUpdateSuccess)
@@ -74,11 +82,12 @@ const addHandlers = function () {
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
   $('.new-game-button').on('click', onCreateGame)
-  $('.box').on('click', onUpdateGame)
+  // $('.box').on('click', onUpdateGame)
   $('#get-games').on('click', onGetGames)
   $('#get-game').on('submit', onGetGame)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onUpdateGame
 }

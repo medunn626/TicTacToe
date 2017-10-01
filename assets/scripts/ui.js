@@ -3,6 +3,11 @@
 const store = require('./store')
 
 const modal = document.getElementById('modal')
+const email = document.getElementById('email')
+const password = document.getElementById('password')
+const newEmail = document.getElementById('new-email')
+const newPassword = document.getElementById('new-password')
+const newConfirm = document.getElementById('new-confirm')
 
 const signUpSuccess = function (data) {
   console.log(data)
@@ -10,25 +15,23 @@ const signUpSuccess = function (data) {
   $('.failure').text('')
 }
 
-const signUpFailure = function (error) {
-  console.error(error)
+const signUpFailure = function () {
   $('.failure').text('Please try again. This user exists already or you need to re-enter each field correctly.')
   $('.success').text('')
 }
 
 const signInSuccess = function (data) {
-  console.log(data)
-  $('.success').text('You are now signed in. It\'s your turn player X')
-  $('.failure').text('')
   store.user = data.user
+  console.log(data)
+  console.log('store is', store)
+  console.log('User info: ID: ' + store.user.id + ', Email: ' + store.user.email + ', Token: ' + store.user.token)
   $('div.main-area').removeClass('hidden-content')
   $('div.display-game-id').removeClass('hidden-content')
   $('div.sign-up').addClass('hidden-content')
   $('div.sign-in').addClass('hidden-content')
 }
 
-const signInFailure = function (error) {
-  console.error(error)
+const signInFailure = function () {
   $('.failure').text('Could not find user with that email and password.')
   $('.success').text('')
 }
@@ -39,35 +42,52 @@ const changePasswordSuccess = function () {
   $('.failure').text('')
 }
 
-const changePasswordFailure = function (error) {
-  console.error(error)
+const changePasswordFailure = function () {
   $('.modal-failure').text('Sorry, please try again.')
 }
 
 const signOutSuccess = function () {
+  store.user = null
+  console.log('Store.user = ' + store.user)
   $('.success').text('You have successfully signed out.')
   $('.failure').text('')
-  store.user = null
-  console.log(store.user)
+  email.value = ''
+  password.value = ''
+  newEmail.value = ''
+  newPassword.value = ''
+  newConfirm.value = ''
   $('div.main-area').addClass('hidden-content')
   $('div.display-game-id').addClass('hidden-content')
   $('div.sign-up').removeClass('hidden-content')
   $('div.sign-in').removeClass('hidden-content')
 }
 
-const signOutFailure = function (error) {
-  console.error(error)
+const signOutFailure = function () {
   $('.failure').text('Sorry, please try again.')
   $('.success').text('')
 }
 
-const onCreateSuccess = function (data) {
+const onCreateSuccessSignIn = function (data) {
+  store.game = data.game
   console.log(data)
-  store.game = data.game.id
+  console.log('store is', store)
+  console.log('User info: ID: ' + store.user.id + ', Email: ' + store.user.email + ', Token: ' + store.user.token)
   $('div.display-game-id').removeClass('hidden-content')
   $('.display').text('')
-  $('.display').text('Game ID: ' + store.game)
-  $('.success').text('New game started. It\'s your turn player X')
+  $('.display').text('Game ID: ' + store.game.id)
+  $('.success').text('You are now signed in. It\'s your turn player X.')
+  $('.failure').text('')
+}
+
+const onCreateSuccess = function (data) {
+  store.game = data.game
+  console.log(data)
+  console.log('store is', store)
+  console.log('User info: ID: ' + store.user.id + ', Email: ' + store.user.email + ', Token: ' + store.user.token)
+  $('div.display-game-id').removeClass('hidden-content')
+  $('.display').text('')
+  $('.display').text('Game ID: ' + store.game.id)
+  $('.success').text('New game started. It\'s your turn player X.')
   $('.failure').text('')
 }
 
@@ -76,7 +96,10 @@ const onError = function () {
   $('.success').text('')
 }
 
-const onUpdateSuccess = function () {
+const onUpdateSuccess = function (data) {
+  data.game = store.game
+  console.log(data)
+  console.log('This ID: ' + this.id + ' Store.game.cells' + store.game.cells)
   $('.success').append('Go!')
   $('.failure').text('')
 }
@@ -87,15 +110,29 @@ const onErrorModal = function () {
 }
 
 const onGetGamesSuccess = function (data) {
+  data.game = store.game
+  const count = data.games.length
   console.log(data.games)
-  $('#see-games').text('')
-  data.games.forEach((game) => $('#see-games').append(`Game # ${game.id}: Match between ${game.player_x} and ${game.player_o}<br>`))
+  $('.game-modal-failure').text('')
+  $('#complete').text('You\'ve completed a total of ' + count + ' games.')
+  if (data.game.winner === null || data.game.turns === undefined) {
+    $('#previous').text('')
+    $('#previous').append(`Game currently in progress.`)
+  } else {
+    $('#previous').text('')
+    $('#previous').append(`Last Game Result: ${data.game.winner} with ${data.game.turns} turns.`)
+  }
 }
 
 const onGetGameSuccess = function (data) {
-  console.log('data is ', data)
+  console.log('data is ', data.game)
   $('.game-modal-failure').text('')
-  $('#see-game').append(`Game # ${data.game.id}: Match between ${data.game.player_x} and ${data.game.player_o}`)
+  $('#see-game').text('')
+  if (data.game.over === true) {
+    $('#see-game').append(`Game # ${data.game.id}: Complete`)
+  } else {
+    $('#see-game').append(`Game # ${data.game.id}: In Progress`)
+  }
 }
 
 module.exports = {
@@ -107,6 +144,7 @@ module.exports = {
   changePasswordFailure,
   signOutSuccess,
   signOutFailure,
+  onCreateSuccessSignIn,
   onCreateSuccess,
   onError,
   onUpdateSuccess,
