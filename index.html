@@ -30,8 +30,8 @@
         <form class="sign-in" id="sign-in">
           <fieldset>
             <legend>Sign In!</legend>
-            <input type="text" name="credentials[email]" placeholder="Enter Email"><br>
-            <input type="password" name="credentials[password]" placeholder="Enter Password"><br>
+            <input type="text" id="email" name="credentials[email]" placeholder="Enter Email"><br>
+            <input type="password" id="password" name="credentials[password]" placeholder="Enter Password"><br>
             <input type="submit" name="submit" value="Sign in!">
           </fieldset>
         </form>
@@ -41,9 +41,9 @@
         <a href="#sign-up" data-toggle="collapse">Not a member? Create an Account!</a>
         <form class="collapse" id="sign-up">
           <fieldset>
-            <input type="text" name="credentials[email]" placeholder="Enter Email"><br>
-            <input type="password" name="credentials[password]" placeholder="Create Password"><br>
-            <input type="password" name="credentials[password-confirmation]" placeholder="Confirm Password"><br>
+            <input type="text" id="new-email" name="credentials[email]" placeholder="Enter Email"><br>
+            <input type="password" id="new-password" name="credentials[password]" placeholder="Create Password"><br>
+            <input type="password" id="new-confirm" name="credentials[password-confirmation]" placeholder="Confirm Password"><br>
             <input type="submit" name="submit" value="Sign up!">
           </fieldset>
         </form>
@@ -95,13 +95,14 @@
               <span class="close" id="stats-close">&times;</span>
               <form id="get-game">
                 <fieldset>
-                  <legend>Search by Game ID:</legend>
-                  <h5 class="game-modal-failure"></h5>
+                  <legend>Statistics</legend>
+                  <h5 class="previous" id="previous"></h5>
+                  <h5 class="complete" id="complete"></h5>
+                  <br>
                   <input type="text" name="game[id]" placeholder="Enter Game ID">
-                  <input type="submit" name="submit" value="Find Game">
+                  <input type="submit" name="submit" value="Find Specific Game">
+                  <h5 class="game-modal-failure"></h5>
                   <h5 class="see-game" id="see-game"></h5>
-                  <a href="#see-games" data-toggle="collapse">See All Your Games:</a>
-                  <h5 class="see-games collapse" id="see-games"></h5>
                 </fieldset>
               </form>
             </div>
