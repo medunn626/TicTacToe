@@ -2,7 +2,6 @@
 
 const config = require('./config')
 const store = require('./store')
-// const main = require('./index')
 
 const signUp = function (data) {
   return $.ajax({
@@ -52,7 +51,6 @@ const create = function () {
 }
 
 const update = function (data) {
-  console.log(store.game)
   return $.ajax({
     url: config.apiOrigin + '/games/' + store.game.id,
     method: 'PATCH',

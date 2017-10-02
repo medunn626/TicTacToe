@@ -9,17 +9,11 @@ $(() => {
   setAPIOrigin(location, config)
 })
 
-// TO-DO:
-
-// Update UI: Don't show letter on board if theres an issue with update
-// Review requirements
-// READ ME
-// Roate turns
-// How to prevent refresh button from logging user out and making them sign in again
-// Modal scroll
-// Test
-// Refactor / Make all files modular
-// Styling (background, font, desktop optimization)
+// Confirm refresh:
+window.onbeforeunload = confirm
+function confirm () {
+  return false
+}
 
 // Change password modal variables and functions:
 const modal = document.getElementById('modal')
@@ -174,7 +168,7 @@ const keepScore = function () {
   }
 }
 
-// Game status functions
+// Game status functions:
 const incrementTurns = function () {
   turnsTaken = turnsTaken + 1
   turn = turn + 1
@@ -234,12 +228,13 @@ const newGame = function () {
   resetGame()
   determineCurrentPlayer()
   $('.box').text('')
-  console.log('cells array is: ' + cells + ', Turns taken: ' + turnsTaken + ', Next player is: ' + currentPlayer)
-  console.log('X score is: ' + xScore + ' O score is: ' + oScore)
   return cells
 }
 $(() => {
   $('.new-game-button').on('click', newGame)
+})
+$(() => {
+  $('#sign-in').on('submit', newGame)
 })
 
 // Making a move on the game board:
@@ -265,11 +260,6 @@ const move = function (data) {
       $('.success').text('Your turn player ' + currentPlayer)
     }
     events.onUpdateGame(data)
-    console.log('Grid Position: ' + this.id)
-    console.log('cells array is: ' + store.game.cells + ', Turns taken: ' + store.game.turns + ' Next player is: ' + currentPlayer)
-    console.log('Is game over? ' + store.game.over + 'Who won? ' + store.game.winner)
-    console.log('X stats [score: ' + xScore + ', winner: ' + store.game.player_x.winner + ' O stats [score: ' + oScore + ', winner: ' + store.game.player_o.winner)
-    console.log(store.game)
   }
   return store.game
 }
@@ -281,9 +271,3 @@ $(() => {
 $(() => {
   events.addHandlers()
 })
-
-module.exports = {
-  value,
-  turn,
-  over
-}
