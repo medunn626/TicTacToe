@@ -10,7 +10,6 @@ const newPassword = document.getElementById('new-password')
 const newConfirm = document.getElementById('new-confirm')
 
 const signUpSuccess = function (data) {
-  console.log(data)
   $('.success').text('You are now a member! Please sign in.')
   $('.failure').text('')
 }
@@ -22,9 +21,6 @@ const signUpFailure = function () {
 
 const signInSuccess = function (data) {
   store.user = data.user
-  console.log(data)
-  console.log('store is', store)
-  console.log('User info: ID: ' + store.user.id + ', Email: ' + store.user.email + ', Token: ' + store.user.token)
   $('div.main-area').removeClass('hidden-content')
   $('div.display-game-id').removeClass('hidden-content')
   $('div.sign-up').addClass('hidden-content')
@@ -48,7 +44,6 @@ const changePasswordFailure = function () {
 
 const signOutSuccess = function () {
   store.user = null
-  console.log('Store.user = ' + store.user)
   $('.success').text('You have successfully signed out.')
   $('.failure').text('')
   email.value = ''
@@ -69,9 +64,6 @@ const signOutFailure = function () {
 
 const onCreateSuccessSignIn = function (data) {
   store.game = data.game
-  console.log(data)
-  console.log('store is', store)
-  console.log('User info: ID: ' + store.user.id + ', Email: ' + store.user.email + ', Token: ' + store.user.token)
   $('div.display-game-id').removeClass('hidden-content')
   $('.display').text('')
   $('.display').text('Game ID: ' + store.game.id)
@@ -81,9 +73,6 @@ const onCreateSuccessSignIn = function (data) {
 
 const onCreateSuccess = function (data) {
   store.game = data.game
-  console.log(data)
-  console.log('store is', store)
-  console.log('User info: ID: ' + store.user.id + ', Email: ' + store.user.email + ', Token: ' + store.user.token)
   $('div.display-game-id').removeClass('hidden-content')
   $('.display').text('')
   $('.display').text('Game ID: ' + store.game.id)
@@ -98,10 +87,13 @@ const onError = function () {
 
 const onUpdateSuccess = function (data) {
   data.game = store.game
-  console.log(data)
-  console.log('This ID: ' + this.id + ' Store.game.cells' + store.game.cells)
-  $('.success').append('Go!')
-  $('.failure').text('')
+}
+
+const onUpdateError = function () {
+  $('.success').text('')
+  $('.failure').text('There was an issue processing your move.')
+  $('.box').text('')
+  $('div.box').removeClass('active')
 }
 
 const onErrorModal = function () {
@@ -112,7 +104,6 @@ const onErrorModal = function () {
 const onGetGamesSuccess = function (data) {
   data.game = store.game
   const count = data.games.length
-  console.log(data.games)
   $('.game-modal-failure').text('')
   $('#complete').text('You\'ve completed a total of ' + count + ' games.')
   if (data.game.winner === null || data.game.turns === undefined) {
@@ -125,13 +116,12 @@ const onGetGamesSuccess = function (data) {
 }
 
 const onGetGameSuccess = function (data) {
-  console.log('data is ', data.game)
   $('.game-modal-failure').text('')
   $('#see-game').text('')
   if (data.game.over === true) {
     $('#see-game').append(`Game # ${data.game.id}: Complete`)
   } else {
-    $('#see-game').append(`Game # ${data.game.id}: In Progress`)
+    $('#see-game').append(`Game # ${data.game.id}: Incomplete`)
   }
 }
 
@@ -148,6 +138,7 @@ module.exports = {
   onCreateSuccess,
   onError,
   onUpdateSuccess,
+  onUpdateError,
   onErrorModal,
   onGetGamesSuccess,
   onGetGameSuccess

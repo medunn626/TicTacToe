@@ -3,7 +3,6 @@
 const getFormFields = require(`../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
-// const store = ('./store')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
@@ -51,13 +50,12 @@ const onCreateGame = function (event) {
 }
 
 const onUpdateGame = function (event) {
-  console.log(event.target.id)
   event.preventDefault()
   const data = event.target
   const game = data.game
   api.update(game)
     .then(ui.onUpdateSuccess)
-    .catch(ui.onError)
+    .catch(ui.onUpdateError)
 }
 
 const onGetGames = function () {
@@ -82,7 +80,6 @@ const addHandlers = function () {
   $('#change-password').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
   $('.new-game-button').on('click', onCreateGame)
-  // $('.box').on('click', onUpdateGame)
   $('#get-games').on('click', onGetGames)
   $('#get-game').on('submit', onGetGame)
 }
