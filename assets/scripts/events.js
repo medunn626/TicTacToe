@@ -3,13 +3,19 @@
 const getFormFields = require(`../../lib/get-form-fields`)
 const api = require('./api')
 const ui = require('./ui')
+const newPassword = document.getElementById('new-password')
+const newConfirm = document.getElementById('new-confirm')
 
 const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  api.signUp(data)
-    .then(ui.signUpSuccess)
-    .catch(ui.signUpFailure)
+  if (newPassword.value === newConfirm.value) {
+    api.signUp(data)
+      .then(ui.signUpSuccess)
+      .catch(ui.signUpFailure)
+  } else {
+    ui.signUpFailure()
+  }
 }
 
 const onSignIn = function (event) {
