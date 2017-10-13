@@ -4,7 +4,7 @@ URL to Game: https://medunn626.github.io/TicTacToe/index.html
 
 This game was created as part of the first project during the Web Development Immersive program at General Assembly on 10/2/17.
 
-My Tic Tac Toe game is a SPA where two players (X and O) play against each other on a 3 by 3 grid to tri to get three letters in a row, column or diagonal path. The game defaults to player X going first each round. The game also keeps track of how many games won by each player, how many turns the last game took to achieve a win and by which player, as well as how many games have been played altogether.
+My Tic Tac Toe game is a SPA where two players (X and O) play against each other on a 3 by 3 grid to try to get three letters in a row, column or diagonal path. The game defaults to player X going first each round. The game also keeps track of how many games won by each player, how many turns the last game took to achieve a win and by which player, as well as how many games have been played altogether.
 
 ## Technlologies Used:
 
@@ -47,6 +47,7 @@ I would like to resolve the following problems for a future release:
 ## Wireframes:
 
 Desktop: https://www.draw.io/#LTic%20Tac%20Toe%20-%20Desktop%20Sketch.xml
+
 Mobile: https://www.draw.io/#LTic%20Tac%20Toe%20-%20Mobile%20Sketch.xml
 
 ## User Stories:
