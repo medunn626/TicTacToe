@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Tic Tac Toe</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body class="container-fluid">
+      <!-- Logo and slogan at top left -->
+      <div class="logo">
+        <h1>Tic Tac Toe</h1>
+        <h5>The game that will change your life!</h5>
+      </div>
+      <!-- Game ID at top right. Only displayed when signed in  -->
+      <div class="display-game-id hidden-content" id="display-game-id">
+        <h5 class="display">Game ID: </h5>
+      </div>
+      <!-- Sign in and sign up forms and feedback messaging. Sign up is collapsable. These hide on sign in.-->
+      <div class="log-in-forms" id="log-in-forms">
+        <div class=col-xs-12>
+          <br>
+          <h5 class="success"></h5>
+          <h5 class="failure"></h5>
+          <br>
+        </div>
+        <br>
+        <!-- Sign In Form -->
+        <div class="sign-in">
+        <form class="sign-in" id="sign-in">
+          <fieldset>
+            <legend>Sign In!</legend>
+            <input type="text" id="email" name="credentials[email]" placeholder="Enter Email"><br>
+            <input type="password" id="password" name="credentials[password]" placeholder="Enter Password"><br>
+            <input type="submit" name="submit" value="Sign in!">
+          </fieldset>
+        </form>
+      </div>
+      <!-- Sign Up Form  -->
+      <div class="sign-up">
+        <br>
+        <a href="#sign-up" data-toggle="collapse">Not a member? Create an Account!</a>
+        <form class="collapse" id="sign-up">
+          <fieldset>
+            <input type="text" id="new-email" name="credentials[email]" placeholder="Enter Email"><br>
+            <input type="password" id="new-password" name="credentials[password]" placeholder="Create Password"><br>
+            <input type="password" id="new-confirm" name="credentials[password-confirmation]" placeholder="Confirm Password"><br>
+            <input type="submit" name="submit" value="Sign up!">
+          </fieldset>
+        </form>
+      </div>
+      </div>
+      <!-- Game board, player wins and action menu. These only display when signed in.-->
+      <div class="main-area hidden-content">
+        <!-- Game board  -->
+        <div class="game-board" id=game-board>
+          <br>
+          <br>
+          <div class="new-row">
+            <div class="col-xs-4 box" id="0"></div>
+            <div class="col-xs-4 box" id="1"></div>
+            <div class="col-xs-4 box right" id="2"></div>
+          </div>
+          <div class="new-row">
+            <div class="col-xs-4 box" id="3"></div>
+            <div class="col-xs-4 box" id="4"></div>
+            <div class="col-xs-4 box right" id="5"></div>
+          </div>
+          <div class="new-row">
+            <div class="col-xs-4 box bottom" id="6"></div>
+            <div class="col-xs-4 box bottom" id="7"></div>
+            <div class="col-xs-4 box bottom right" id="8"></div>
+          </div>
+        </div>
+        <!-- Player wins -->
+        <div class="players">
+          <div class="user">
+            <br>
+            <br>
+            <h4>Your Wins:</h4>
+            <h3 class="score-display" id="x-score">0</h3>
+          </div>
+          <div class="opponent">
+            <br>
+            <br>
+            <h4>Opponent's Wins:</h4>
+            <h3 class="score-display" id="o-score">0</h3>
+          </div>
+        </div>
+          <!-- Action menu: New Game, Statistics, Account Info and Sign Out -->
+          <!-- New game button starts new game  -->
+        <div class="col-xs-3 new-game" id="new-game">
+          <br>
+          <button type="submit" class="new-game-button">New Game</button>
+        </div>
+        <!-- Statistics button triggers a modal with games stats -->
+        <div class="col-xs-3 stats">
+          <br>
+          <button type="submit" class="get-games-button" id="get-games">Statistics</button>
+          <div id="stats-modal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="stats-close">&times;</span>
+              <form id="get-game">
+                <fieldset>
+                  <legend>Statistics</legend>
+                  <h5 class="previous" id="previous"></h5>
+                  <h5 class="complete" id="complete"></h5>
+                  <br>
+                  <input type="text" id="game-id" name="game[id]" placeholder="Enter Game ID">
+                  <input type="submit" name="submit" value="Find Specific Game">
+                  <h5 class="game-modal-failure"></h5>
+                  <h5 class="see-game" id="see-game"></h5>
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+       <!-- Acccount Info button triggers modal with ability to change password  -->
+        <div class="col-xs-3 change-pswd">
+          <br>
+          <button type="submit" class="trigger-modal-button" id="trigger-modal-button">Account Info</button>
+          <div id="modal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="close">&times;</span>
+              <form id="change-password">
+                <fieldset>
+                  <legend>Would you like to change your password?</legend>
+                  <h5 class="modal-failure"></h5>
+                  <input type="password" id="old" name="passwords[old]" placeholder="Old Password">
+                  <input type="password" id="new" name="passwords[new]" placeholder="New Password">
+                  <input type="submit" name="submit" value="Change Password">
+                </fieldset>
+              </form>
+            </div>
+          </div>
+        </div>
+        <!-- Sign Out button logs the user out  -->
+        <div class="col-xs-3 sign-out">
+          <form id="sign-out">
+            <br>
+            <input type="submit" name="submit" class="sign-out-button" value="Sign Out">
+          </form>
+       </div>
+    </div>
+  </body>
+</html>
