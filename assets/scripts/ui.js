@@ -8,6 +8,8 @@ const password = document.getElementById('password')
 const newEmail = document.getElementById('new-email')
 const newPassword = document.getElementById('new-password')
 const newConfirm = document.getElementById('new-confirm')
+const passwordChangeOld = document.getElementById('old')
+const passwordChangeNew = document.getElementById('new')
 
 const signUpSuccess = function (data) {
   $('.success').text('You are now a member! Please sign in.')
@@ -36,6 +38,9 @@ const changePasswordSuccess = function () {
   modal.style.display = 'none'
   $('.success').text('You successfully changed your password.')
   $('.failure').text('')
+  passwordChangeOld.value = ''
+  passwordChangeNew.value = ''
+  $('.modal-failure').text('')
 }
 
 const changePasswordFailure = function () {

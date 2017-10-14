@@ -4,12 +4,17 @@ const setAPIOrigin = require('../../lib/set-api-origin')
 const config = require('./config')
 const events = require('./events')
 const store = require('./store')
+const email = document.getElementById('email')
+const passwordChangeOld = document.getElementById('old')
+const passwordChangeNew = document.getElementById('new')
+const gameSearch = document.getElementById('game-id')
+let user = email.value
 
 $(() => {
   setAPIOrigin(location, config)
 })
 
-// Confirm refresh:
+// Confirm refresh, back, close:
 window.onbeforeunload = confirm
 function confirm () {
   return false
@@ -22,6 +27,8 @@ const openModal = function () {
 }
 const closeModal = function () {
   modal.style.display = 'none'
+  passwordChangeOld.value = ''
+  passwordChangeNew.value = ''
   $('.modal-failure').text('')
 }
 $(() => {
@@ -39,6 +46,8 @@ const openStats = function () {
 }
 const closeStats = function () {
   statsModal.style.display = 'none'
+  gameSearch.value = ''
+  $('#see-game').text('')
   $('.game-modal-failure').text('')
 }
 $(() => {
@@ -198,6 +207,8 @@ const resetGame = function () {
   xWins = false
   oWins = false
   winner = null
+  $('#x-score').text(xScore)
+  $('#o-score').text(oScore)
 }
 const getCellId = [
   document.getElementById('0'),
@@ -221,6 +232,16 @@ const resetStyle = function () {
   getCellId[7].className = 'col-xs-4 box bottom'
   getCellId[8].className = 'col-xs-4 box bottom right'
 }
+const checkUser = function () {
+  if (email.value !== user) {
+    xScore = 0
+    oScore = 0
+    user = email.value
+  }
+}
+$(() => {
+  $('#sign-in').on('submit', checkUser)
+})
 
 // New game button:
 const newGame = function () {

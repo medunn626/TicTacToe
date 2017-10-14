@@ -111,7 +111,7 @@
                   <h5 class="previous" id="previous"></h5>
                   <h5 class="complete" id="complete"></h5>
                   <br>
-                  <input type="text" name="game[id]" placeholder="Enter Game ID">
+                  <input type="text" id="game-id" name="game[id]" placeholder="Enter Game ID">
                   <input type="submit" name="submit" value="Find Specific Game">
                   <h5 class="game-modal-failure"></h5>
                   <h5 class="see-game" id="see-game"></h5>
@@ -131,15 +131,15 @@
                 <fieldset>
                   <legend>Would you like to change your password?</legend>
                   <h5 class="modal-failure"></h5>
-                  <input type="password" name="passwords[old]" placeholder="Old Password">
-                  <input type="password" name="passwords[new]" placeholder="New Password">
+                  <input type="password" id="old" name="passwords[old]" placeholder="Old Password">
+                  <input type="password" id="new" name="passwords[new]" placeholder="New Password">
                   <input type="submit" name="submit" value="Change Password">
                 </fieldset>
               </form>
             </div>
           </div>
         </div>
-        <!-- Sign Out button logs the user out  -->>
+        <!-- Sign Out button logs the user out  -->
         <div class="col-xs-3 sign-out">
           <form id="sign-out">
             <br>
