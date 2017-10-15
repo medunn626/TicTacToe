@@ -46,12 +46,10 @@ I would like to resolve the following problems for a future release:
 
 ## Wireframes:
 
-Desktop: https://www.draw.io/#LTic%20Tac%20Toe%20-%20Desktop%20Sketch.xml
-
+Desktop:
 https://user-images.githubusercontent.com/17644549/31589121-134b86e2-b1ca-11e7-97a0-7178c749a9d5.jpg
 
-Mobile: https://www.draw.io/#LTic%20Tac%20Toe%20-%20Mobile%20Sketch.xml
-
+Mobile: 
 https://user-images.githubusercontent.com/17644549/31589122-14b865ae-b1ca-11e7-8a4a-3c26512a50f7.jpg
 
 ## User Stories:
